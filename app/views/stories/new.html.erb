@@ -1,0 +1,26 @@
+
+<div class="container">
+ <div class="col-md-8 col-md-offset-2">
+    <div class="form-area">
+    <h1>Create A Story</h1>
+    <%= simple_form_for @story do |f| %>
+    <div class="form-grouph">
+    <div class="dropdown">
+    <button class="btn btn-default" type="button" data-toggle="dropdown">Category
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+    <%= f.select(:category_id, Category.all.map { |f| [f.name, f.id] }, {}, { id: "select"}) %>
+    </ul>
+</div>
+    <%= f.input :body, as: :text %>
+    </div>
+    <%= f.button :submit, class: "btn btn-primary" %>
+    <% end %>
+    </div>
+    </div>
+    </div>
+
+  
+  
+  
+    

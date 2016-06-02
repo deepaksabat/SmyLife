@@ -1,0 +1,43 @@
+<div class="container">
+<p>
+<%= link_to "Write Your Story", new_story_path, class: "btn btn-default" %>
+</p>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-md-8">
+<% @stories.each do |story| %>
+<div class="well">
+   <%= story.body %>
+</br>
+<%= link_to like_story_path(story), method: :put, class: "btn btn-success"  do %> 
+Upvote
+(<%= story.get_upvotes.size %>)
+<% end %>
+<%= link_to  dislike_story_path(story), method: :put, class: "btn btn-warning" do %>
+Downvote
+(<%= story.get_downvotes.size %>)
+<% end %>
+    <%= link_to "Comment", story_path(story), class: "btn btn-success" %><small> (<%= story.comments.count %>)</small>
+    <% if user_signed_in? %>
+   
+   <%= link_to "Destroy", story, method: :delete, data: {confirm: "Are You Sure"}, class: "btn btn-danger" %>
+   <span class="text-muted pull-right">Created By : <%= current_user.name %> At <%= story.created_at.strftime('%m-%d-%Y at %I:%m%p') %></span> 
+   <% end %>
+      
+   </div>
+   <% end %>
+   </div>
+      <div class="col-md-4">
+     <div class="panel panel-default">
+  <div class="panel-heading text-center">Category</div>
+  <ul class="list group">
+  <% Category.all.each do |category| %>
+  <li class="list-group-item"><%= link_to category.name, category_path(category) %></li>
+  <% end %>
+  </ul>
+  </div>
+  </div>
+  </div>
+</div>
+</div>

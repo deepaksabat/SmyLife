@@ -1,0 +1,27 @@
+<div class="container">
+<div class="row">
+<br/>
+<div class="row">
+<div class="col-md-8">
+<div class="well">
+ <%= @story.body %>
+ <span class="text-muted pull-right">
+  <% @story.comments.each do |comment| %>
+   <%= comment.body %>
+<% end %>
+</span>
+</div>
+
+<div class="well" >
+<%= simple_form_for([@story, @story.comments.build]) do |f| %>
+	
+	<%= f.input :body %>
+	<%= f.button :submit, :class => "btn-custom2" %>
+<% end %>
+</div>
+
+ </div>
+ </div>
+</div>
+</div>
+</div>
